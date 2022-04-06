@@ -24,27 +24,17 @@ final class GildedRose
             }
 
             if ($item->name == 'Aged Brie') {
-                if ($item->quality < 50) {
-                    $item->quality = $item->quality + 1;
-                }
+                $this->increaseQuality($item);
             } elseif ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->quality < 50) {
-                    $item->quality = $item->quality + 1;
-                }
+                $this->increaseQuality($item);
                 if ($item->sell_in < 11) {
-                    if ($item->quality < 50) {
-                        $item->quality = $item->quality + 1;
-                    }
+                    $this->increaseQuality($item);
                 }
                 if ($item->sell_in < 6) {
-                    if ($item->quality < 50) {
-                        $item->quality = $item->quality + 1;
-                    }
+                    $this->increaseQuality($item);
                 }
             } else {
-                if ($item->quality > 0) {
-                    $item->quality = $item->quality - 1;
-                }
+                $this->decreaseQuality($item);
             }
 
             $item->sell_in = $item->sell_in - 1;
@@ -54,16 +44,28 @@ final class GildedRose
             }
 
             if ($item->name == 'Aged Brie') {
-                if ($item->quality < 50) {
-                    $item->quality = $item->quality + 1;
-                }
+                $this->increaseQuality($item);
             } elseif ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                    $item->quality = $item->quality - $item->quality;
+                $item->quality = 0;
             } else {
-                if ($item->quality > 0) {
-                    $item->quality = $item->quality - 1;
-                }
+                $this->decreaseQuality($item);
             }
         }
+    }
+
+    private function increaseQuality(Item $item)
+    {
+        if ($item->quality >= 50) {
+            return;
+        }
+        $item->quality += 1;
+    }
+
+    private function decreaseQuality(Item $item)
+    {
+        if ($item->quality <= 0) {
+            return;
+        }
+        $item->quality -= 1;
     }
 }
