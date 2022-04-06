@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GildedRose;
 
-final class Item
+abstract class Item
 {
     /**
      * @var string
@@ -20,6 +20,8 @@ final class Item
      * @var int
      */
     public $quality;
+
+    abstract public function update();
 
     public function __construct(string $name, int $sell_in, int $quality)
     {

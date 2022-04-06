@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Tests;
 
 use GildedRose\GildedRose;
-use GildedRose\Item;
+use GildedRose\AgedBrieItem;
+use GildedRose\BackstagePassItem;
+use GildedRose\NormalItem;
+use GildedRose\SulfurasItem;
 use PHPUnit\Framework\TestCase;
 
 class GildedRoseTest extends TestCase
@@ -14,7 +17,7 @@ class GildedRoseTest extends TestCase
     {
         $expected = 'foo';
 
-        $items = [new Item('foo', 0, 0)];
+        $items = [new NormalItem('foo', 0, 0)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
