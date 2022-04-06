@@ -32,4 +32,20 @@ final class Item
     {
         return "{$this->name}, {$this->sell_in}, {$this->quality}";
     }
+
+    public function increaseQuality()
+    {
+        if ($this->quality >= 50) {
+            return;
+        }
+        $this->quality += 1;
+    }
+
+    public function decreaseQuality()
+    {
+        if ($this->quality <= 0) {
+            return;
+        }
+        $this->quality -= 1;
+    }
 }
